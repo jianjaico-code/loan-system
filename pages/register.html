@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>RFSC</title>
+      <link rel="icon" type="image/png"  href="../assets/imgs/profile.png">
+      <link rel="stylesheet" href="../css/font-awesome.min.css">
+      <link rel="stylesheet" href="../css/bootstrap.css">
+      <link rel="stylesheet" href="../css/register.css">
+      <link rel="stylesheet" href="https://unpkg.com/bs-stepper/dist/css/bs-stepper.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-storage.js"></script>
+      <script src="../../js/functions/firebase.init.js"></script>
+      
+      
+   </head>
+   <body id="home">
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+         <div class="container">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <b><a href="client/index.html" class="navbar-brand">RFSC</a></b>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                     <a href="client/index.html" class="nav-link wht">Back</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <div class="container"> 
+         <div id="stepper3" class="bs-stepper">
+            <div class="bs-stepper-header" role="tablist">
+               <div class="step" data-target="#test-nlf-1">
+                  <button  type="button" class="btn btn-link step-trigger" role="tab" id="stepper3trigger1" aria-controls="test-nlf-1">
+                  <span class="bs-stepper-circle">1</span>
+                  <span class="bs-stepper-label">Personal Data</span>
+                  </button>
+               </div>
+               <div class="line"></div>
+               <div class="step" data-target="#test-nlf-2">
+                  <button type="button" class=" btn btn-link step-trigger" role="tab" id="stepper3trigger2" aria-controls="test-nlf-2">
+                  <span class="bs-stepper-circle">2</span>
+                  <span class="bs-stepper-label">Employment Profile</span>
+                  </button>
+               </div>
+               <div class="line"></div>
+               <div class="step" data-target="#test-nlf-3">
+                  <button type="button" class=" btn btn-link step-trigger" role="tab" id="stepper3trigger3" aria-controls="test-nlf-3">
+                  <span class="bs-stepper-circle">3</span>
+                  <span class="bs-stepper-label">Net Income</span>
+                  </button>
+               </div>
+               <div class="line"></div>
+               <div class="step" data-target="#test-nlf-5">
+                  <button type="button" class=" btn btn-link step-trigger" role="tab" id="stepper3trigger5" aria-controls="test-nlf-5">
+                  <span class="bs-stepper-circle">5</span>
+                  <span class="bs-stepper-label">Loan</span>
+                  </button>
+               </div>
+            </div>
+            <div class="bs-stepper-content">
+                  <!-- Number 1 input fields -->
+                  <div id="test-nlf-1" role="tabpanel" class="content" aria-labelledby="stepper3trigger1">
+                     <div class="form-row">
+                        <div class="form-group col-md-4">
+                           <label for="Name">Name: </label>
+                           <input type="" class="form-control" id="Name" placeholder="Enter your Name" disabled>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                           <label for="Name">Middlename: </label>
+                           <input type="" class="form-control" id="Middlename" placeholder="Enter your Middleame" disabled>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                           <label for="Name">Lastname: </label>
+                           <input type="" class="form-control" id="Lastname" placeholder="Enter your Lastname" disabled>
+                        </div>
+                     </div>
+                     <div class="form-row">
+                        <div class="form-group col-md-4">
+                           <label for="Birthdate">Birthdate: </label>
+                           <input type="date" class="form-control" id="Birthdate" placeholder="Age" disabled>
+                        </div>
+                        <div class="form-group col-md-4">
+                           <label for="Gender">Gender: </label>
+                           <select class="form-control" id="Gender" disabled>
+                              <option>Male</option>
+                              <option>Female</option>
+                           </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                           <label for="NumberOfDependents">No. of Dependecies:</label>
+                           <input type="number" class="form-control" id="NumberOfDependents" placeholder="No. of Dependecies">
+                        </div>
+                     </div>
+                     <div class="form-row">
+                        <div class="form-group col-md-8">
+                           <label for="SpouseName">Spouse:</label>
+                           <input type="text" class="form-control" id="SpouseName" placeholder="Spouse">
+                        </div>
+                        <div class="form-group col-md-4">
+                           <label for="SpouseAge">Spouse Birthdate:</label>
+                           <input type="date" class="form-control" id="SpouseAge" placeholder="Birthday">
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="Address">Home Address: <span style="color:red;">*</span></label>
+                        <input type="text" class="form-control" id="Address" placeholder="Home Address">
+                     </div>
+                     <div class="form-row">
+                        <div class="form-group col-md-6">
+                           <label for="LengthOfStay">Length of Stay (Years): <span style="color:red;">*</span></label>
+                           <input type="number" class="form-control" id="LengthOfStay" placeholder="Length of Stay">
+                        </div>
+                        <div class="form-group col-md-6">
+                           <label for="TypeOfStay">Type of Stay: <span style="color:red;">*</span></label>
+                           <select class="form-control" id="TypeOfStay">
+                              <option value="Own">Own</option>
+                              <option value="Rent">Rent</option>
+                              <option value="Free Use">Free Use</option>
+                           </select>
+                        </div>
+                     </div>
+                     <button class=" try btn  btn-block " onclick="stepper3.next()">Next</button>
+                  </div>
+                  <!-- Number 2 input fields -->
+                  <div id="test-nlf-2" role="tabpanel" class="content" aria-labelledby="stepper3trigger2">
+                     <div class="form-row">
+                        <div class="form-group col-md-6">
+                           <label for="Employer">Employer: <span style="color:red;">*</span></label>
+                           <input type="email" class="form-control" id="Employer" placeholder="Employer">
+                        </div>
+                        <div class="form-group col-md-6">
+                           <label for="EmplpoyerAddress">Address: <span style="color:red;">*</span></label>
+                           <input type="email" class="form-control" id="EmplpoyerAddress" placeholder="Address">
+                        </div>
+                     </div>
+                     <div class="form-row">
+                        <div class="form-group col-md-3">
+                           <label for="LengthOfService">Length of Service (Months): <span style="color:red;">*</span></label>
+                           <input type="number" class="form-control" id="LengthOfService" placeholder="Length of Service">
+                        </div>
+                        <div class="form-group col-md-3">
+                           <label for="Position">Position: <span style="color:red;">*</span></label>
+                           <input type="text" class="form-control" id="Position" placeholder="Position">
+                        </div>
+                        <div class="form-group col-md-3">
+                           <label for="EmploymentStatus">Status: <span style="color:red;">*</span></label>
+                           <select class="form-control" id="EmploymentStatus">
+                              <option value="Employed">Employed</option>
+                              <option value="Unemployed">Unemployed</option>
+                           </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                           <label for="SalaryPerMonth">Salary Per Month: <span style="color:red;">*</span></label>
+                           <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="SalaryPerMonth" placeholder="Salary of the Month">
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="NameOfSupervisor">Name of Immidiate Supervisor: <span style="color:red;">*</span></label>
+                        <input type="text" class="form-control" id="NameOfSupervisor" placeholder="Name of Immidiate Supervisor">
+                     </div>
+                     <div class="form-row">
+                        <div class="form-group col-md-6">
+                           <label for="Firm">Name of Firm: <span style="color:red;">*</span></label>
+                           <input type="text" class="form-control" id="Firm" placeholder="Name of Firm">
+                        </div>
+                        <div class="form-group col-md-6">
+                           <label for="NatureOfBusiness">Type of Bussines: <span style="color:red;">*</span></label>
+                           <input type="text" class="form-control" id="NatureOfBusiness" placeholder="Name of Bussiness">
+                        </div>
+                     </div>
+                     <button class="try btn  btn-block" onclick="stepper3.next()">Next</button>
+                  </div>
+                  <!-- Number 3 input fields -->
+                  <div id="test-nlf-3" role="tabpanel" class="content" aria-labelledby="stepper3trigger3">
+                        
+                        <div class="form-row">
+                           <div class="col-md-6">
+                              <div class="input-group mb-2 mr-sm-2">
+                                 <div class="input-group-prepend">
+                                    <div class="input-group-text">Employment <span style="color:red;"></span></div>
+                                 </div>
+                                 <input disabled type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="EmploymentAmmountNumber" value="0" placeholder="Amount No.">
+                              </div>
+                           </div>
+
+                           <div class="col-md-6">
+                              <div class="input-group mb-2 mr-sm-2">
+                                 <div class="input-group-prepend">
+                                    <div class="input-group-text">Employment Spouse:</div>
+                                 </div>
+                                 <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="EmploymentAmmountNumberSpouse" value="0" placeholder="Amount No.">
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="form-row">
+                           <div class="col-md-6">
+                              <div class="input-group mb-2 mr-sm-2">
+                                 <div class="input-group-prepend">
+                                    <div class="input-group-text">Bussiness:</div>
+                                 </div>
+                                 <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="BusinessAmmountNumber" value="0" placeholder="Amount No.">
+                              </div>
+                           </div>
+
+                           <div class="col-md-6">
+                              <div class="input-group mb-2 mr-sm-2">
+                                 <div class="input-group-prepend">
+                                    <div class="input-group-text">Bussiness Spouse:</div>
+                                 </div>
+                                 <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="BusinessAmmountNumberSpouse" value="0" placeholder="Amount No.">
+                              </div>
+                           </div>
+                        </div>
+      
+                        <div class="form-row">
+                           <div class="col-md-6">
+                              <div class="input-group mb-2 mr-sm-2">
+                                 <div class="input-group-prepend">
+                                    <div class="input-group-text">Other Income:</div>
+                                 </div>
+                                 <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="OtherAmmountNumber" value="0" placeholder="Amount No.">
+                              </div>
+                           </div>
+
+                           <div class="col-md-6">
+                              <div class="input-group mb-2 mr-sm-2">
+                                 <div class="input-group-prepend">
+                                    <div class="input-group-text">Other Income Spouse:</div>
+                                 </div>
+                                 <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="OtherAmmountNumberSpouse" value="0" placeholder="Amount No.">
+                              </div>
+                           </div>
+                        </div>
+
+                     <div class="form-row">
+                        <div class="form-group col-md-3">
+                           <label for="Rent">Rent Expense:</label>
+                           <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" value="0" id="Rent" placeholder="Rent">
+                        </div>
+                        <div class="form-group col-md-3">
+                           <label for="FoodAndClothing">Food & Clothing Expense:</label>
+                           <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="FoodAndClothing" value="0" placeholder="Food & Clothing">
+                        </div>
+                        <div class="form-group col-md-3">
+                           <label for="Schooling">Schooling Expense:</label>
+                           <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="Schooling" value="0" placeholder="Schooling">
+                        </div>
+                        <div class="form-group col-md-3">
+                           <label for="Others">Other Expense:</label>
+                           <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="Others" value="0" placeholder="Others">
+                        </div>
+                     </div>
+                     
+                     <div class="form-row">
+                        <div class="form-group col-md-6">
+                           <label for="MonthlyIncome">Monthly Net Income: <span style="color:red;"></span></label>
+                           <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="MonthlyIncome" placeholder="Monthly Income" disabled>
+                        </div>
+                        <div class="form-group col-md-6">
+                           <label for="YearlyNetIncome">Yearly Net Income: <span style="color:red;"></span></label>
+                           <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="YearlyNetIncome" placeholder="Yearly Net Income" disabled>
+                        </div>
+                     </div>
+                     <button class="try btn  btn-block" onclick="stepper3.next()">Next</button>
+                  </div>
+   
+                  <div id="test-nlf-5" role="tabpanel" class="content" aria-labelledby="stepper3trigger5">
+                     <div class="form-row">
+                        <div class="form-group col-md-6">
+                           <label for="NameOfSupervisor">Please attach your Valid ID:  <span style="color:red;">*</span></label>
+                           <input class="form-control" accept="image/*" class="file-select" id="validID" type="file">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                           <label for="NameOfSupervisor">Please attach your Income Statement:  <span style="color:red;">*</span></label>
+                           <input class="form-control" accept="image/*" class="file-select" id="incomeStatement" type="file">
+                        </div>
+                     </div>
+                     <div class="form-row">
+                        <div class="form-group col-md-6">
+                           <label for="NameOfSupervisor">Branch: <span style="color:red;">*</span></label>
+                           <select class="form-control" id="branch">
+                              <option value="Cagayan de Oro">Cagayan de Oro City</option>
+                              <option value="Iligan">Iligan City</option>
+                              <option value="Gingoog">Gingoog City</option>
+                           </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                           <label for="NameOfSupervisor">Co-Maker:</label>
+                           <input type="text" class="form-control" id="CoMaker" placeholder="Co-maker">
+                        </div>
+                     </div>
+                     <div class="form-row">
+                        <div class="form-group col-md-6">
+                           <label for="Loan">Amount to Loan: <span style="color:red;">*</span></label>
+                           <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="Loan" placeholder="Amount to Loan">
+                           <p id="loanRange"></p>
+                        </div>
+                        <div class="form-group col-md-6">
+                           <label for="MonthsToPay">Months to Pay: <span style="color:red;">*</span></label>
+                           <input type="text" data-a-sign="₱" data-a-dec="." data-a-sep="," class="form-control" id="MonthsToPay" placeholder="Months to Pay">
+                        </div>
+                     </div>
+                     
+                     <button class="try btn  btn-block" onclick="applyLoan()">Apply Loan</button>
+                     <div id="overlay"></div>
+                     <div id="loading">
+                        <img id="loading-image" style="margin-left: 40%;" src="../../assets/imgs/loader.gif" alt="Loading..." />
+                     </div>  
+                  </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script src="../js/jquery.min.js"></script>
+   <script src="../js/popper.min.js"></script>
+   <script src="../js/bootstrap.min.js"></script>
+   <script src="../js/autoNumeric.min.js"></script>
+   <script src="https://unpkg.com/bs-stepper/dist/js/bs-stepper.min.js"></script>
+   <script src="../js/functions/apply-loan.js"></script>
+   <script>
+   $(document).ready(function () {
+   stepper3 = new Stepper(document.querySelector('#stepper3'), {
+   linear: false,
+   animation: true
+   })
+   });
+   </script>
+</body>
+</html>

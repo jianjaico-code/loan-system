@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>RFSC</title>
+		<link rel="icon" type="image/png"  href="../../assets/imgs/profile.png">
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/font-awesome.min.css" rel="stylesheet">
+		<link href="../../css/datepicker3.css" rel="stylesheet">
+		<link href="../../css/styles.css" rel="stylesheet">
+		 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+		
+		<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js""></script>
+		<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-storage.js"></script>
+		<script src="../../js/functions/firebase.init.js"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+			<div id="overlay"></div>
+			<div id="loading">
+				<img id="loading-image" src="../../assets/imgs/loader.gif" alt="Loading..." />
+			</div>  
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+					<a class="navbar-brand" href="#"><span>RFSC</span>Client</a>
+				</div>
+			</div><!-- /.container-fluid -->
+		</nav>
+
+
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div class="profile-sidebar">
+			<div class="profile-usertitle">
+				<div id="username" class="profile-usertitle-name"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="divider"></div>
+		<ul class="nav menu">
+            <li class="active"	 ><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+			<li><a href="../register.html"><em class="fa fa-handshake-o">&nbsp;</em> Apply New Loan</a></li>
+			<li><a href="reloan.html"><em class="fa fa-balance-scale">&nbsp;</em> Reloan</a></li>
+            <li><a href="history.html"><em class="fa fa-calendar">&nbsp;</em> History</a></li>
+			<li><a href="../../index.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		</ul>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Dashboard</h1>
+				<p id="nextPaymentLabel"></p>
+			</div>
+		</div><!--/.row-->
+				
+		
+		<!-- <div class="panel panel-container">
+				<div class="row">
+					<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+						<div class="panel panel-teal panel-widget border-right">
+							<div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
+								<div class="large">120</div>
+								<div class="text-muted">New Orders</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+						<div class="panel panel-blue panel-widget border-right">
+							<div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
+								<div class="large">52</div>
+								<div class="text-muted">Comments</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+						<div class="panel panel-orange panel-widget border-right">
+							<div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
+								<div class="large">24</div>
+								<div class="text-muted">New Users</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+						<div class="panel panel-red panel-widget ">
+							<div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
+								<div class="large">25.2k</div>
+								<div class="text-muted">Page Views</div>
+							</div>
+						</div>
+					</div>
+				</div>/.row
+				
+			</div>/.col -->
+			<div class="row">
+					<div class="col-lg-12">
+						<div id="data2" class="panel panel-default">
+							<div class="panel-heading">Ledger</div>
+							<div class="panel-body">
+							<div class="col-md-12">
+							<div class="tile-body">
+								<form method="POST">
+									<div class="table-responsive">
+										<table class="table table-hover table-bordered" id="tb1">
+											<thead>
+												<tr>
+													<th>Date</th>
+													<th>Loan Amount</th>
+													<th>Interest Amount</th>
+													<th>Principal Amount</th>
+													<th>CI-Officer Status</th>
+													<th>Manager Status</th>
+													<th>Balance</th>
+													<th></th>
+												</tr>
+											</thead>
+												
+											<tbody>
+		
+											</tbody>
+										</table>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div><!-- /.panel-->
+				<div id="data1" class="panel panel-default">
+				<div class="container">
+					<div class="panel-heading"><button class="btn btn-danger" onclick="returnData()">Return</button></div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-hover table-bordered" id="tb3">
+								<thead>
+									<tr>
+										<th>Day</th>
+										<th>Date to Pay</th>
+										<th>Principal Amount (Daily)</th>
+										<th>Interest (Daily)</th>
+										<th>Daily Payment</th>
+										<th>Remaining Balance</th>
+									</tr>
+								</thead>
+									
+								<tbody>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				</div>
+				<div class="row">
+						<div class="col-lg-12">
+							<div class="panel panel-default">
+								<div class="panel-heading">Payments</div>
+								<div class="panel-body">
+								<div class="col-md-12">
+								<div id="data2" class="tile-body">
+									<form method="POST">
+										<div class="table-responsive">
+											<table class="table table-hover table-bordered" id="tb2">
+												<thead>
+													<tr>
+														<th>Day</th>
+														<th>Collection Date</th>
+														<th>Remaining Balance</th>
+														<th>Next Payment</th>
+														<th>Amount</th>
+														<th>Penalty Ammount</th>
+													</tr>
+												</thead>
+													
+												<tbody>
+			
+												</tbody>
+											</table>
+										</div>
+									</form>
+								</div>
+										
+							</div>
+						</div>
+	
+						
+					</div><!-- /.panel-->
+				
+			<div class="col-sm-12">
+				<p class="back-link">Powered by <a href="https://bracketlogic.com">Bracket Logic</a></p>
+			</div>
+		</div><!-- /.row -->
+	</div><!--/.main-->
+	
+<script src="../../js/jquery-1.11.1.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+	<script src="../../js/chart.min.js"></script>
+	<script src="../../js/chart-data.js"></script>
+	<script src="../../js/easypiechart.js"></script>
+	<script src="../../js/easypiechart-data.js"></script>
+	<script src="../../js/bootstrap-datepicker.js"></script>
+	<script src="../../js/custom.js"></script>
+	<script type="text/javascript" src="../../js/plugins/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="../../js/plugins/datatabale.buttons.js"></script>
+	<script type="text/javascript" src="../../js/plugins/datatable.print.js"></script>
+<script type="text/javascript" src="../../js/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/plugins/bootstrap-notify.min.js"></script>
+<script src="../../js/functions/client.function.js"></script>
+</body>
+</html>

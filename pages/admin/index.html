@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>RFSC</title>
+		<link rel="icon" type="image/png"  href="../../assets/imgs/profile.png">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<link href="../../css/font-awesome.min.css" rel="stylesheet">
+		<link href="../../css/datepicker3.css" rel="stylesheet">
+		<link href="../../css/styles.css" rel="stylesheet">
+		 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+		
+		<script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase-firestore.js"></script>
+		<script src="../../js/functions/firebase.init.js"></script>
+
+	</head>
+	<body>
+		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+			<div id="overlay"></div>
+			<div id="loading">
+				<img id="loading-image" src="../../assets/imgs/loader.gif" alt="Loading..." />
+			</div>  
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+					<a class="navbar-brand" href="#"><span>RFSC</span>MANAGER</a>
+				</div>
+			</div><!-- /.container-fluid -->
+		</nav>
+
+
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div class="profile-sidebar">
+			<div class="profile-usertitle">
+				<div id="username" class="profile-usertitle-name"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="divider"></div>
+		<ul class="nav menu">
+			<li class="active"	 ><a href="index.html"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+			<li><a href="audit.html"><em class="fa fa-calculator">&nbsp; </em> Audit</a></li>
+			<li ><a href="users.html"><em class="fa fa-users">&nbsp;</em> Users</a></li>
+			<li ><a href="assign_collector.html"><em class="fa fa-motorcycle">&nbsp;</em> Assign Collector</a></li>
+			<li><a href="../../index.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		</ul>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>User Profile Tabs</h1>
+			</div>
+		</div><!--/.row-->
+				
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="col-md-12">
+							<div id="data1" class="tile-body">
+						<form method="POST">
+							<div class="table-responsive">
+								<table class="table table-hover table-bordered" id="tb1">
+									<thead>
+										<tr>
+											<th>Date Verified</th>
+											<th>Client Name</th>
+											<th>CI Officer Name</th>
+											<th>Loan Amount</th>
+											<th>Interest</th>
+											<th>Months To Pay</th>
+											<th>Principal Amount</th>
+											<th>Status</th>
+											<th></th>
+										</tr>
+									</thead>
+										
+									<tbody>
+				
+
+									</tbody>
+								</table>
+							</div>
+						</form>
+					</div>
+
+					
+					<div id="data">
+						<div class="container">
+							<ul class="nav nav-pills">
+								<li class="active"><a data-toggle="pill" href="#home">Personal Data</a></li>
+								<li><a data-toggle="pill" href="#menu1">Employment Bussiness Profile</a></li>
+								<li><a data-toggle="pill" href="#menu3">Net Income</a></li>
+								<li><a data-toggle="pill" href="#menu4">Desire Loan</a></li>
+								<li><a data-toggle="pill" href="#menu5">Remarks</a></li>
+							</ul>
+							
+							<div class="tab-content">
+								<div id="home" class="tab-pane fade in active">
+									<div class="row">
+										<div class="col-sm-4">
+											<h3><p id="Name"></p></h3>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="Age"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="Gender"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="SpouseName"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="SpouseAge"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="NumberOfDependents"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="Address"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="LengthOfStay"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="TypeOfStay"></p>
+										</div>
+									</div>
+									<div class="row">
+								<div class="col-lg-12 center">
+									<p id="DateLoanApplied"></p>
+									<p id="Status"></p>		
+									<p id="AdminStatus"></p>
+								</div>
+							</div>
+								</div>
+								<div id="menu1" class="tab-pane fade">
+									<div class="row">
+										<div class="col-sm-4">
+											<h3><p id="Employer"></p></h3>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="EmplpoyerAddress"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="LengthOfService"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+												<p id="Position"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="EmploymentStatus"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="SalaryPerMonth"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="NameOfSupervisor"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="Firm"></p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<p id="NatureOfBusiness"></p>
+										</div>
+									</div>
+								</div>
+								<div id="menu3" class="tab-pane fade">
+										<div class="row">
+												<div class="col-sm-4">
+													<p id="EmploymentAmmountNumber"></p>
+												</div>
+		
+												<div class="col-sm-4">
+													<p id="EmploymentAmmountNumberSpouse"></p>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-4">
+													<p id="BusinessAmmountNumber"></p>
+												</div>
+		
+												<div class="col-sm-4">
+													<p id="BusinessAmmountNumberSpouse"></p>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-4">
+													<p id="OtherAmmountNumber"></p>
+												</div>
+		
+												<div class="col-sm-4">
+													<p id="OtherAmmountNumberSpouse"></p>
+												</div>
+											</div>
+		
+											<div class="row">
+												<div class="col-sm-4">
+													<strong>	<p id="MonthlyIncome"></p>	</strong>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-4">
+													<strong><p id="YearlyNetIncome"></p>	</strong>
+												</div>
+											</div>
+		
+											<div class="row">
+												<div class="col-sm-4">
+													<p id="Rent"></p>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-4">
+													<p id="FoodAndClothing"></p>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-4">
+													<p id="Schooling"></p>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-4">
+													<p id="Others"></p>
+												</div>
+											</div>
+								</div>
+								<div id="menu4" class="tab-pane fade">
+									<div class="row">
+										<div class="col-sm-4">
+											<strong><p id="Loan"></p></strong>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<strong><p id="MonthsToPay"></p></strong>
+										</div>
+									</div>
+
+
+									<div class="row">
+										<div class="col-sm-4">
+											<strong><p id="Interest"></p></p></strong>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<strong><p id="TotalLoan"></p></strong>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-4">
+											<strong><p id="DailyPayment"></p></strong>
+										</div>
+									</div>
+
+								</div>
+								<div id="menu5" class="tab-pane fade">
+										<div class="row">
+											<div class="col-sm-4">
+												<h5>CI-Officer Comment: </h5>
+												<p id="comment"></p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<a href="#" id="validIDDoc" target="_blank">View ID <em class="fa fa-external-link">&nbsp;</em></a>
+											</div>
+	
+											<div class="col-sm-6">
+												<a href="#" id="incomeStatementDoc" target="_blank">View Income Statements <em class="fa fa-external-link">&nbsp;</em></a>
+											</div>
+										</div>	
+										<div class="row">
+												<div class="col-sm-12">
+														<button id="rejectBtn" class="btn btn-danger btn-block " onclick="rejectLoan()">Reject</button>
+														<button id="approveBtn" class="btn btn-primary btn-block " onclick="approveLoan()">Approve</button>
+												</div>
+											</div>						
+									</div>
+							<br><button type="button" onclick="returnData()" class="btn btn-warning btn-block">Close</button>
+
+							</div>
+						</div>
+
+							
+	
+							
+							
+						</div>
+							
+						</div>
+					</div>
+				</div><!-- /.panel-->
+				
+				
+				
+			</div><!-- /.col-->
+			<div class="col-sm-12">
+				<p class="back-link">Powered by <a href="https://bracketlogic.com">Bracket Logic</a></p>
+			</div>
+		</div><!-- /.row -->
+	</div><!--/.main-->
+	
+<script src="../../js/jquery-1.11.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script src="../../js/chart.min.js"></script>
+	<script src="../../js/chart-data.js"></script>
+	<script src="../../js/easypiechart.js"></script>
+	<script src="../../js/easypiechart-data.js"></script>
+	<script src="../../js/bootstrap-datepicker.js"></script>
+	<script src="../../js/custom.js"></script>
+	<script type="text/javascript" src="../../js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../js/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/plugins/bootstrap-notify.min.js"></script>
+<script src="../../js/functions/admin.function.js"></script>
+</body>
+</html>
